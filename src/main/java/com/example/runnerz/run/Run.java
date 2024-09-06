@@ -1,11 +1,16 @@
 package com.example.runnerz.run;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
+
 import java.time.LocalDateTime;
 
 public record Run(Integer id,
+                  @NotEmpty
                   String title,
                   LocalDateTime startedOn,
                   LocalDateTime completedOn,
+                  @Positive
                   Integer miles,
                   Location location) {
 
@@ -16,5 +21,10 @@ public record Run(Integer id,
         this.completedOn = completedOn;
         this.miles = miles;
         this.location = location;
+
+        if(this.startedOn().isAfter(this.completedOn())) {
+            throw new IllegalArgumentException("Run cannot end before it starts");
+        }
     }
 }
+

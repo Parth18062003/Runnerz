@@ -1,5 +1,6 @@
 package com.example.runnerz.run;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -39,13 +40,13 @@ public class RunController {
 
     @PostMapping("/api/runs")
     @ResponseStatus(HttpStatus.CREATED)
-    void create(@RequestBody Run run) {
+    void create(@Valid @RequestBody Run run) {
         runRepository.create(run);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/api/runs/{id}")
-    void update(@PathVariable Integer id, @RequestBody Run run) {
+    void update(@Valid @PathVariable Integer id, @RequestBody Run run) {
         Optional<Run> existingRun = runRepository.findById(id);
         if(existingRun.isEmpty()) {
             throw new RunNotFoundException("Run not found");

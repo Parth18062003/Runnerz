@@ -1,16 +1,11 @@
 package com.example.runnerz;
 
-import com.example.runnerz.run.Location;
-import com.example.runnerz.run.Run;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.time.LocalDateTime;
 
 
 @SpringBootApplication
